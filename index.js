@@ -1,11 +1,11 @@
-const { query1 } = require("./db/index");
+const { detalle } = require("./db/index");
 const express = require("express");
 const app = express();
 const port = 3000;
 
-app.get("/", async (req, res) => {
-  console.log(query1);
-  const respuesta = await query1();
+app.get("/detalle/:id", async (req, res) => {
+  const id = req.params.id;
+  const respuesta = await detalle(id);
   res.status(200).json(respuesta);
 });
 

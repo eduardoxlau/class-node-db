@@ -10,10 +10,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-const query1 = () => {
+const detalle = (id) => {
   return new Promise((resolve, reject) => {
     connection.query(
-      "SELECT SUM(valornumerico) as valor, ficha,linea,codficha FROM detallesfichasmunicipales WHERE linea = 9 GROUP BY ficha",
+      `SELECT SUM(valornumerico) as valor, ficha,linea,codficha FROM detallesfichasmunicipales WHERE linea = ${id} GROUP BY ficha`,
       function (error, results, fields) {
         if (error) reject(error);
         resolve(results);
@@ -22,4 +22,4 @@ const query1 = () => {
   });
 };
 
-module.exports = { query1 };
+module.exports = { detalle };
