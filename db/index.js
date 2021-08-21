@@ -22,4 +22,17 @@ const detalle = (id) => {
   });
 };
 
-module.exports = { detalle };
+const create_depto = (input) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      "INSERT INTO departamentos SET ? ",
+      input,
+      function (error, results, fields) {
+        if (error) reject(error);
+        resolve(results);
+      }
+    );
+  });
+};
+
+module.exports = { detalle, create_depto };
